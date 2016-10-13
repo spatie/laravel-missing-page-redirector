@@ -56,7 +56,7 @@ Finally you must publish the config file:
 php artisan vendor:publish --provider="Spatie\MissingPageRedirector\MissingPageRedirectorServiceProvider"
 ```
 
-This is the contents of the published config file=
+This is the contents of the published config file:
 
 ```php
 return [
@@ -81,7 +81,47 @@ return [
 
 ## Usage
 
-Coming soon...
+Creating a redirect is easy. You just have to add an entry to the `redirects` key in the config file.
+
+```php
+'redirects' => [
+   '/non-existing-page' => '/existing-page',
+],
+```
+
+You may use route parameters like you're used to when using Laravel's routes:
+
+```php
+    'redirects' => [
+       '/old-blog/{url}' => '/new-blog/{url}',
+    ],
+```
+
+Optional parameters are also... an option:
+
+```php
+    'redirects' => [
+       '/old-blog/{url?}' => '/new-blog/{url}',
+    ],
+```
+
+## Creating your own redirector
+
+By default this package will use the `Spatie\MissingPageRedirector\Redirector\ConfigurationRedirector` which will gets it's redirects from the config file. If you want to use another source for your redirects (for example a database) you can create your own redirector.
+
+A valid redactor is any class that implements the `Spatie\MissingPageRedirector\Redirector\Redirector`-interface. That interface looks like this:
+
+```php
+namespace Spatie\MissingPageRedirector\Redirector;
+
+use Symfony\Component\HttpFoundation\Request;
+
+interface Redirector
+{
+    public function getRedirectsFor(Request $request): array;
+}
+
+```
 
 ## Changelog
 

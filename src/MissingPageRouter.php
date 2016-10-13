@@ -53,7 +53,7 @@ class MissingPageRouter
     protected function resolveRouterParameters(string $redirectUrl): string
     {
         foreach ($this->router->getCurrentRoute()->parameters() as $key => $value) {
-            $redirectUrl = str_replace('{'.$key.'}', $value, $redirectUrl);
+            $redirectUrl = str_replace("{{$key}}", $value, $redirectUrl);
         }
 
         return $redirectUrl;

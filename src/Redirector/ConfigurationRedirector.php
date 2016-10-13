@@ -7,12 +7,7 @@ use Symfony\Component\HttpFoundation\Request;
 
 class ConfigurationRedirector implements Redirector
 {
-    /**
-     * @param \Symfony\Component\HttpFoundation\Request $request
-     *
-     * @return RedirectResponse|null
-     */
-    public function getRedirectsFor(Request $request)
+    public function getRedirectsFor(Request $request): array
     {
         return config('laravel-missing-page-redirector.redirects');
     }

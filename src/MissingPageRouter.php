@@ -33,6 +33,12 @@ class MissingPageRouter
     {
         collect($this->redirects)->each(function($redirectUrl, $missingUrl) {
             $this->router->get($missingUrl, function () use ($redirectUrl) {
+                $parameters = ($this->router->getCurrentRoute()->parameters());
+
+                foreach($parameters as $key=>$value) {
+                    $redirectUrl = str_replace('{' . $key . '}', $value, $redirectUrl);
+                }
+
                 return redirect()->to($redirectUrl);
             });
         });

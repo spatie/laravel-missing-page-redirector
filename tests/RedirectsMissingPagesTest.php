@@ -40,4 +40,16 @@ class RedirectsMissingPagesTest extends TestCase
 
         $this->assertResponseStatus(Response::HTTP_NOT_FOUND);
     }
+
+    /** @test */
+    public function it_can_use_named_parameters()
+    {
+        $this->app['config']->set('laravel-missing-page-redirector.redirects', [
+            '/segment1/{id}/segment2/{slug}' => '/segment2/{slug}'
+        ]);
+
+        $this->get('/segment1/123/segment2/abc');
+
+        $this->assertRedirectedTo('/segment2/abc');
+    }
 }

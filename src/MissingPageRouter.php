@@ -31,8 +31,8 @@ class MissingPageRouter
      */
     public function getRedirectFor(Request $request)
     {
-
         collect($this->redirects)->each(function($redirectUrl, $missingUrl) {
+
             $this->router->get($missingUrl, function () use ($redirectUrl) {
                 $redirectUrl = $this->resolveRouterParameters($redirectUrl);
 
@@ -52,7 +52,7 @@ class MissingPageRouter
         foreach($this->router->getCurrentRoute()->parameters() as $key=>$value) {
             $redirectUrl = str_replace('{' . $key . '}', $value, $redirectUrl);
         }
-        
+
         return $redirectUrl;
     }
 

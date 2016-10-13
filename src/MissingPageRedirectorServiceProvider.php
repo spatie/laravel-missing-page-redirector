@@ -12,7 +12,7 @@ class MissingPageRedirectorServiceProvider extends ServiceProvider
     public function boot()
     {
         if ($this->app->runningInConsole()) {
-           $this->publishes([
+            $this->publishes([
                __DIR__.'/../config/laravel-missing-page-redirector.php' => config_path('laravel-missing-page-redirector.php'),
            ], 'config');
         }

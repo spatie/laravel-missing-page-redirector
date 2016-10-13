@@ -84,4 +84,9 @@ class RedirectsMissingPagesTest extends TestCase
 
         $this->assertRedirectedTo('/new-segment');
     }
+
+    public function it_will_not_redirect_requests_that_are_not_404s()
+    {
+
+    }
 }

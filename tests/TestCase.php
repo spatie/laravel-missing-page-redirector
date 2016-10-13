@@ -43,8 +43,12 @@ abstract class TestCase extends Orchestra
      */
     protected function setUpRoutes($app)
     {
-        Route::any('/existing-page', function () {
+        Route::get('/existing-page', function () {
             return 'existing page';
+        });
+
+        Route::get('response-code/{responseCode}', function(int $responseCode) {
+            abort($responseCode);
         });
     }
 }

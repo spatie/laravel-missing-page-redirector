@@ -85,7 +85,11 @@ class RedirectsMissingPagesTest extends TestCase
         $this->assertRedirectedTo('/new-segment');
     }
 
+    /** @test */
     public function it_will_not_redirect_requests_that_are_not_404s()
     {
+        $this->get('/response-code/500');
+
+        $this->assertResponseStatus(500);
     }
 }

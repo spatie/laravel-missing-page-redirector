@@ -8,7 +8,7 @@
 [![StyleCI](https://styleci.io/repos/70787365/shield?branch=master)](https://styleci.io/repos/70787365)
 [![Total Downloads](https://img.shields.io/packagist/dt/spatie/laravel-missing-page-redirector.svg?style=flat-square)](https://packagist.org/packages/spatie/laravel-missing-page-redirector)
 
-This is where your description should go. Try and limit it to a paragraph or two, and maybe throw in a mention of what PSRs you support to avoid any confusion with users and contributors.
+When transitioning from a old site to a new one your URLs may change. If your old site was popular you probably want to retain your SEO worth. One way of doing is by providing [permanent redirects from your old URLs to your new URLs](https://support.google.com/webmasters/answer/93633?hl=en). This package makes it very easy to add such redirect to your Laravel app. 
 
 Spatie is a webdesign agency based in Antwerp, Belgium. You'll find an overview of all our open source projects [on our website](https://spatie.be/opensource).
 
@@ -28,12 +28,60 @@ You can install the package via composer:
 composer require spatie/laravel-missing-page-redirector
 ```
 
+Here's how to install the service provider:
+
+```php
+// config/app.php
+'providers' => [
+    ...
+    Spatie\MissingPageRedirector\MissingPageRedirectorServiceProvider::class,
+];
+```
+
+Next you must register the `Spatie\MissingPageRedirector\RedirectsMissingPages`-middleware:
+
+```php
+//app/Http/Kernel.php
+
+protected $middlewareGroups = [
+    'web' => [
+        ...
+        \Spatie\MissingPageRedirector\RedirectsMissingPages::class,
+    ]
+```
+
+Finally you must publish the config file:
+
+```php
+php artisan vendor:publish --provider="Spatie\MissingPageRedirector\MissingPageRedirectorServiceProvider"
+```
+
+This is the contents of the published config file=
+
+```php
+return [
+
+    /**
+     * This is the class responsible for providing the URLs which must be redirected.
+     * The only requirement for the redirector is that it needs to implement the
+     * `Spatie\MissingPageRedirector\Redirector\Redirector`-interface
+     */
+    'redirector' => \Spatie\MissingPageRedirector\Redirector\ConfigurationRedirector::class,
+
+    /**
+     * When using the `ConfigurationRedirector` you can specify the redirects in this array.
+     * You can use Laravel's route parameters here.
+     */
+    'redirects' => [
+//        '/non-existing-page' => '/existing-page',
+//        '/old-blog/{url}' => '/new-blog/{url}',
+    ],
+];
+```
+
 ## Usage
 
-``` php
-$skeleton = new Spatie\MissingPageRedirector();
-echo $skeleton->echoPhrase('Hello, Spatie!');
-```
+Coming soon...
 
 ## Changelog
 

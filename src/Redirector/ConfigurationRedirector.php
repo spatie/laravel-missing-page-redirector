@@ -2,7 +2,6 @@
 
 namespace Spatie\MissingPageRedirector\Redirector;
 
-use Spatie\MissingPageRedirector\MissingPageRouter;
 use Symfony\Component\HttpFoundation\Request;
 
 class ConfigurationRedirector implements Redirector

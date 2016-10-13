@@ -47,7 +47,7 @@ abstract class TestCase extends Orchestra
             return 'existing page';
         });
 
-        Route::get('response-code/{responseCode}', function(int $responseCode) {
+        Route::get('response-code/{responseCode}', function (int $responseCode) {
             abort($responseCode);
         });
     }

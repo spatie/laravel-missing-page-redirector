@@ -31,11 +31,11 @@ class MissingPageRouter
      */
     public function getRedirectFor(Request $request)
     {
-        foreach ($this->redirects as $missingUrl => $redirectUrl) {
+        collect($this->redirects)->each(function($redirectUrl, $missingUrl) {
             $this->router->get($missingUrl, function () use ($redirectUrl) {
                 return redirect()->to($redirectUrl);
             });
-        }
+        });
 
         try {
             return $this->router->dispatch($request);

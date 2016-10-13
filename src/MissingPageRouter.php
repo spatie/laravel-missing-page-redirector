@@ -4,6 +4,7 @@ namespace Spatie\MissingPageRedirector;
 
 use Exception;
 use Illuminate\Routing\Router;
+use Spatie\MissingPageRedirector\Redirector\Redirector;
 use Symfony\Component\HttpFoundation\Request;
 
 class MissingPageRouter
@@ -14,14 +15,14 @@ class MissingPageRouter
     /** @var array */
     protected $redirects;
 
-    public function __construct (Router $router)
+    /** @var \Spatie\MissingPageRedirector\Redirector\Redirector */
+    protected $redirector;
+
+    public function __construct (Router $router, Redirector $redirector)
     {
         $this->router = $router;
-    }
 
-    public function setRedirects(array $redirects)
-    {
-        $this->redirects  = $redirects;
+        $this->redirector = $redirector;
     }
 
     /**
@@ -31,7 +32,9 @@ class MissingPageRouter
      */
     public function getRedirectFor(Request $request)
     {
-        collect($this->redirects)->each(function($redirectUrl, $missingUrl) {
+        $redirects = $this->redirector->getRedirectsFor($request);
+
+        collect($redirects)->each(function($redirectUrl, $missingUrl) {
 
             $this->router->get($missingUrl, function () use ($redirectUrl) {
                 $redirectUrl = $this->resolveRouterParameters($redirectUrl);

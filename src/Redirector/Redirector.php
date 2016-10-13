@@ -12,5 +12,5 @@ interface Redirector
      *
      * @return RedirectResponse|null
      */
-    public function getRedirectFor(Request $request);
+    public function getRedirectsFor(Request $request);
 }

@@ -4,6 +4,7 @@ namespace Spatie\MissingPageRedirector;
 
 use Illuminate\Routing\Router;
 use Illuminate\Support\ServiceProvider;
+use Spatie\MissingPageRedirector\Redirector\Redirector;
 
 class MissingPageRedirectorServiceProvider extends ServiceProvider
 {
@@ -18,11 +19,13 @@ class MissingPageRedirectorServiceProvider extends ServiceProvider
 
         $this->app->bind(Redirector::class, config('laravel-missing-page-redirector.redirector'));
 
-        $this->app->bind(MissingPageRouter::class, function() {
+        $this->app->bind(MissingPageRouter::class, function () {
 
-            $router =  new Router($this->app['events']);
+            $router = new Router($this->app['events']);
 
-                return new MissingPageRouter($router);
+            $redirector = $this->app->make(Redirector::class);
+
+            return new MissingPageRouter($router, $redirector);
         });
 
     }

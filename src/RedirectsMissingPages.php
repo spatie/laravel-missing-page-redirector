@@ -10,13 +10,18 @@ class RedirectsMissingPages
 {
     public function handle(Request $request, Closure $next)
     {
-        $response = $next($request);
+        try {
+            $response = $next($request);
 
-        if ($response->getStatusCode() === Response::HTTP_NOT_FOUND) {
+            if ($response->getStatusCode() === Response::HTTP_NOT_FOUND) {
 
-            if ($redirectResponse = app(Redirector::class)->getRedirectFor($request)) {
-                return $redirectResponse;
+                if ($redirectResponse = app(MissingPageRouter::class)->getRedirectFor($request)) {
+                    return $redirectResponse;
+                }
             }
+        }
+        catch(\Exception $e) {
+            dd($e);
         }
 
         return $response;

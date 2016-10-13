@@ -7,23 +7,13 @@ use Symfony\Component\HttpFoundation\Request;
 
 class ConfigurationRedirector implements Redirector
 {
-    /** @var \Spatie\MissingPageRedirector\MissingPageRouter */
-    protected $missingPageRouter;
-
-    public function __construct(MissingPageRouter $missingPageRouter)
-    {
-        $this->missingPageRouter = $missingPageRouter;
-    }
-
     /**
      * @param \Symfony\Component\HttpFoundation\Request $request
      *
      * @return RedirectResponse|null
      */
-    public function getRedirectFor(Request $request)
+    public function getRedirectsFor(Request $request)
     {
-        $this->missingPageRouter->setRedirects(config('laravel-missing-page-redirector.redirects'));
-
-        return $this->missingPageRouter->getRedirectFor($request);
+        return config('laravel-missing-page-redirector.redirects');
     }
 }

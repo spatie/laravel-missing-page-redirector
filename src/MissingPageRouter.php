@@ -31,13 +31,10 @@ class MissingPageRouter
      */
     public function getRedirectFor(Request $request)
     {
+
         collect($this->redirects)->each(function($redirectUrl, $missingUrl) {
             $this->router->get($missingUrl, function () use ($redirectUrl) {
-                $parameters = ($this->router->getCurrentRoute()->parameters());
-
-                foreach($parameters as $key=>$value) {
-                    $redirectUrl = str_replace('{' . $key . '}', $value, $redirectUrl);
-                }
+                $redirectUrl = $this->resolveRouterParameters($redirectUrl);
 
                 return redirect()->to($redirectUrl);
             });
@@ -49,4 +46,15 @@ class MissingPageRouter
             return null;
         }
     }
+
+    protected function resolveRouterParameters(string $redirectUrl): string
+    {
+        $routeParameters = $this->router->getCurrentRoute()->parameters();
+
+        foreach($routeParameters as $key=>$value) {
+            $redirectUrl = str_replace('{' . $key . '}', $value, $redirectUrl);
+        }
+        return $redirectUrl;
+    }
+
 }

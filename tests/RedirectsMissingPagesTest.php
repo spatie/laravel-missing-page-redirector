@@ -64,4 +64,24 @@ class RedirectsMissingPagesTest extends TestCase
 
         $this->assertRedirectedTo('/new-segment/123');
     }
+
+    /** @test */
+    public function it_can_use_optional_parameters()
+    {
+        $this->app['config']->set('laravel-missing-page-redirector.redirects', [
+            '/old-segment/{parameter1?}/{parameter2?}' => '/new-segment/'
+        ]);
+
+        $this->get('/old-segment');
+
+        $this->assertRedirectedTo('/new-segment');
+
+        $this->get('/old-segment/old-segment2');
+
+        $this->assertRedirectedTo('/new-segment');
+
+        $this->get('/old-segment/old-segment2/old-segment3');
+
+        $this->assertRedirectedTo('/new-segment');
+    }
 }

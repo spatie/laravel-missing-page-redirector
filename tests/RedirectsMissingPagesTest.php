@@ -57,11 +57,11 @@ class RedirectsMissingPagesTest extends TestCase
     public function it_can_use_multiple_named_parameters_in_one_segment()
     {
         $this->app['config']->set('laravel-missing-page-redirector.redirects', [
-            '/segment1/{id}-{slug}' => '/segment1/{id}'
+            '/new-segment/{id}-{slug}' => '/new-segment/{id}/'
         ]);
 
-        $this->get('/segment1/123-blablabla');
+        $this->get('/new-segment/123-blablabla');
 
-        $this->assertRedirectedTo('/segment1/123');
+        $this->assertRedirectedTo('/new-segment/123');
     }
 }

@@ -24,6 +24,7 @@ class MissingPageRedirectorServiceProvider extends ServiceProvider
 
                 return new MissingPageRouter($router);
         });
+
     }
 
     /**

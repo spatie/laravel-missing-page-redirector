@@ -14,14 +14,14 @@ class MissingPageRouter
     /** @var array */
     protected $redirects;
 
-    public function __construct (Router $router)
+    public function __construct(Router $router)
     {
         $this->router = $router;
     }
 
     public function setRedirects(array $redirects)
     {
-        $this->redirects  = $redirects;
+        $this->redirects = $redirects;
     }
 
     /**
@@ -31,8 +31,7 @@ class MissingPageRouter
      */
     public function getRedirectFor(Request $request)
     {
-        collect($this->redirects)->each(function($redirectUrl, $missingUrl) {
-
+        collect($this->redirects)->each(function ($redirectUrl, $missingUrl) {
             $this->router->get($missingUrl, function () use ($redirectUrl) {
                 $redirectUrl = $this->resolveRouterParameters($redirectUrl);
 
@@ -43,17 +42,16 @@ class MissingPageRouter
         try {
             return $this->router->dispatch($request);
         } catch (Exception $e) {
-            return null;
+            return;
         }
     }
 
     protected function resolveRouterParameters(string $redirectUrl): string
     {
-        foreach($this->router->getCurrentRoute()->parameters() as $key=>$value) {
-            $redirectUrl = str_replace('{' . $key . '}', $value, $redirectUrl);
+        foreach ($this->router->getCurrentRoute()->parameters() as $key => $value) {
+            $redirectUrl = str_replace('{'.$key.'}', $value, $redirectUrl);
         }
 
         return $redirectUrl;
     }
-
 }

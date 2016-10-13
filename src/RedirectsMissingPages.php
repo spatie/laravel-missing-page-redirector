@@ -3,6 +3,7 @@
 namespace Spatie\MissingPageRedirector;
 
 use Closure;
+use Exception;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -20,8 +21,8 @@ class RedirectsMissingPages
                 }
             }
         }
-        catch(\Exception $e) {
-            dd($e);
+        catch(Exception $e) {
+
         }
 
         return $response;

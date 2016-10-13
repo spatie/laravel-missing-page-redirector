@@ -2,7 +2,6 @@
 
 namespace Spatie\MissingPageRedirector\Test;
 
-use File;
 use Illuminate\Contracts\Http\Kernel;
 use Orchestra\Testbench\TestCase as Orchestra;
 use Route;

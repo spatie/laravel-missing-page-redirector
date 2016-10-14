@@ -41,6 +41,7 @@ class MissingPageRouter
 
                 return redirect()->to($redirectUrl);
             });
+            
         });
 
         try {

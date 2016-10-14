@@ -6,6 +6,7 @@ use Exception;
 use Illuminate\Routing\Router;
 use Spatie\MissingPageRedirector\Redirector\Redirector;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 class MissingPageRouter
 {
@@ -34,7 +35,7 @@ class MissingPageRouter
             $this->router->get($missingUrl, function () use ($redirectUrl) {
                 $redirectUrl = $this->resolveRouterParameters($redirectUrl);
 
-                return redirect()->to($redirectUrl);
+                return redirect()->to($redirectUrl, Response::HTTP_MOVED_PERMANENTLY);
             });
         });
 

@@ -18,7 +18,7 @@ class RedirectsMissingPagesTest extends TestCase
     }
 
     /** @test */
-    public function it_will_redirect_a_non_existing_page()
+    public function it_will_redirect_a_non_existing_page_with_a_permanent_redirect()
     {
         $this->app['config']->set('laravel-missing-page-redirector.redirects', [
             '/non-existing-page' => '/existing-page',
@@ -27,6 +27,8 @@ class RedirectsMissingPagesTest extends TestCase
         $this->get('non-existing-page');
 
         $this->assertRedirectedTo('/existing-page');
+
+        $this->assertResponseStatus(Response::HTTP_MOVED_PERMANENTLY);
     }
 
     /** @test */

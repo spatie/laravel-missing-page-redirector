@@ -43,11 +43,10 @@ Next you must register the `Spatie\MissingPageRedirector\RedirectsMissingPages`-
 ```php
 //app/Http/Kernel.php
 
-protected $middlewareGroups = [
-    'web' => [
-        ...
-        \Spatie\MissingPageRedirector\RedirectsMissingPages::class,
-    ]
+protected $middleware = [
+       ...
+       \Spatie\MissingPageRedirector\RedirectsMissingPages::class,
+    ],
 ```
 
 Finally you must publish the config file:

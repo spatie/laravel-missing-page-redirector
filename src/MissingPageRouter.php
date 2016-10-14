@@ -12,23 +12,19 @@ class MissingPageRouter
     /** @var \Illuminate\Routing\Router */
     protected $router;
 
-    /** @var array */
-    protected $redirects;
-
     /** @var \Spatie\MissingPageRedirector\Redirector\Redirector */
     protected $redirector;
 
     public function __construct(Router $router, Redirector $redirector)
     {
         $this->router = $router;
-
         $this->redirector = $redirector;
     }
 
     /**
      * @param \Symfony\Component\HttpFoundation\Request $request
      *
-     * @return RedirectResponse|null
+     * @return \Illuminate\Http\Response|null
      */
     public function getRedirectFor(Request $request)
     {
@@ -40,7 +36,6 @@ class MissingPageRouter
 
                 return redirect()->to($redirectUrl);
             });
-            
         });
 
         try {

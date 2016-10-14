@@ -3,7 +3,6 @@
 namespace Spatie\MissingPageRedirector;
 
 use Closure;
-use Exception;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 

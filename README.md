@@ -8,7 +8,9 @@
 [![StyleCI](https://styleci.io/repos/70787365/shield?branch=master)](https://styleci.io/repos/70787365)
 [![Total Downloads](https://img.shields.io/packagist/dt/spatie/laravel-missing-page-redirector.svg?style=flat-square)](https://packagist.org/packages/spatie/laravel-missing-page-redirector)
 
-When transitioning from a old site to a new one your URLs may change. If your old site was popular you probably want to retain your SEO worth. One way of doing is by providing [permanent redirects from your old URLs to your new URLs](https://support.google.com/webmasters/answer/93633?hl=en). This package makes it very easy to add such redirect to your Laravel app. 
+When transitioning from a old site to a new one your URLs may change. If your old site was popular you probably want to retain your SEO worth. One way of doing is by providing [permanent redirects from your old URLs to your new URLs](https://support.google.com/webmasters/answer/93633?hl=en). This package makes that process very easy.
+
+When installed you only need to [add your redirects to the config file](). Want to use the database as your source of redirects? [No problem]()!
 
 Spatie is a webdesign agency based in Antwerp, Belgium. You'll find an overview of all our open source projects [on our website](https://spatie.be/opensource).
 

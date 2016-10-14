@@ -124,6 +124,8 @@ interface Redirector
 
 ```
 
+The `getRedirectsFor` method should return an array in which the keys are the old URLs and the values the new URLs.
+
 ## Changelog
 
 Please see [CHANGELOG](CHANGELOG.md) for more information what has changed recently.

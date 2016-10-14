@@ -10,7 +10,7 @@
 
 When transitioning from a old site to a new one your URLs may change. If your old site was popular you probably want to retain your SEO worth. One way of doing is by providing [permanent redirects from your old URLs to your new URLs](https://support.google.com/webmasters/answer/93633?hl=en). This package makes that process very easy.
 
-When installed you only need to [add your redirects to the config file](). Want to use the database as your source of redirects? [No problem]()!
+When installed you only need to [add your redirects to the config file](https://github.com/spatie/laravel-missing-page-redirector#usage). Want to use the database as your source of redirects? [No problem](https://github.com/spatie/laravel-missing-page-redirector#creating-your-own-redirector)!
 
 Spatie is a webdesign agency based in Antwerp, Belgium. You'll find an overview of all our open source projects [on our website](https://spatie.be/opensource).
 

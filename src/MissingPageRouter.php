@@ -18,7 +18,7 @@ class MissingPageRouter
     /** @var \Spatie\MissingPageRedirector\Redirector\Redirector */
     protected $redirector;
 
-    public function __construct (Router $router, Redirector $redirector)
+    public function __construct(Router $router, Redirector $redirector)
     {
         $this->router = $router;
 
@@ -34,8 +34,7 @@ class MissingPageRouter
     {
         $redirects = $this->redirector->getRedirectsFor($request);
 
-        collect($redirects)->each(function($redirectUrl, $missingUrl) {
-
+        collect($redirects)->each(function ($redirectUrl, $missingUrl) {
             $this->router->get($missingUrl, function () use ($redirectUrl) {
                 $redirectUrl = $this->resolveRouterParameters($redirectUrl);
 

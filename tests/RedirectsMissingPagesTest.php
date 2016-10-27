@@ -68,6 +68,19 @@ class RedirectsMissingPagesTest extends TestCase
     }
 
     /** @test */
+    public function it_can_optionally_set_the_redirect_status_code()
+    {
+        $this->app['config']->set('laravel-missing-page-redirector.redirects', [
+            '/temporarily-moved' => ['/just-for-now', 302],
+        ]);
+
+        $this->get('/temporarily-moved');
+
+        $this->assertRedirectedTo('/just-for-now');
+        $this->assertResponseStatus(302);
+    }
+
+    /** @test */
     public function it_can_use_optional_parameters()
     {
         $this->app['config']->set('laravel-missing-page-redirector.redirects', [

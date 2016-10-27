@@ -35,15 +35,11 @@ class MissingPageRouter
 
             $this->router->get($missingUrl, function () use ($redirects) {
 
-                if (is_array($redirects)) {
-                    $redirectUrl = $this->resolveRouterParameters($redirects[0]);
-                } else {
-                    $redirectUrl = $this->resolveRouterParameters($redirects);
-                }
+                return redirect()->to(
+                    $this->getRedirectUrlFromRedirects($redirects),
+                    $this->getStatusCodeFromRedirects($redirects)
+                );
 
-                $statusCode = is_array($redirects) ? $redirects[1] : Response::HTTP_MOVED_PERMANENTLY;
-
-                return redirect()->to($redirectUrl, $statusCode);
             });
         });
 
@@ -52,6 +48,20 @@ class MissingPageRouter
         } catch (Exception $e) {
             return;
         }
+    }
+
+    protected function getRedirectUrlFromRedirects($redirects): string
+    {
+        if (is_array($redirects)) {
+            return $this->resolveRouterParameters($redirects[0]);
+        }
+
+        return $this->resolveRouterParameters($redirects);
+    }
+
+    protected function getStatusCodeFromRedirects($redirects): int
+    {
+        return is_array($redirects) ? $redirects[1] : Response::HTTP_MOVED_PERMANENTLY;
     }
 
     protected function resolveRouterParameters(string $redirectUrl): string

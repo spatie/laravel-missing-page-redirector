@@ -31,11 +31,19 @@ class MissingPageRouter
     {
         $redirects = $this->redirector->getRedirectsFor($request);
 
-        collect($redirects)->each(function ($redirectUrl, $missingUrl) {
-            $this->router->get($missingUrl, function () use ($redirectUrl) {
-                $redirectUrl = $this->resolveRouterParameters($redirectUrl);
+        collect($redirects)->each(function ($redirects, $missingUrl) {
 
-                return redirect()->to($redirectUrl, Response::HTTP_MOVED_PERMANENTLY);
+            $this->router->get($missingUrl, function () use ($redirects) {
+
+                if (is_array($redirects)) {
+                    $redirectUrl = $this->resolveRouterParameters($redirects[0]);
+                } else {
+                    $redirectUrl = $this->resolveRouterParameters($redirects);
+                }
+
+                $statusCode = is_array($redirects) ? $redirects[1] : Response::HTTP_MOVED_PERMANENTLY;
+
+                return redirect()->to($redirectUrl, $statusCode);
             });
         });
 

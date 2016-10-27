@@ -32,14 +32,11 @@ class MissingPageRouter
         $redirects = $this->redirector->getRedirectsFor($request);
 
         collect($redirects)->each(function ($redirects, $missingUrl) {
-
             $this->router->get($missingUrl, function () use ($redirects) {
-
                 return redirect()->to(
                     $this->determineRedirectUrl($redirects),
                     $this->determineRedirectStatusCode($redirects)
                 );
-
             });
         });
 

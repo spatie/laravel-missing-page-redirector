@@ -88,6 +88,27 @@ class RedirectsMissingPagesTest extends TestCase
     }
 
     /** @test */
+    public function it_automatically_appends_existing_query_strings_when_redirecting()
+    {
+        $this->app['config']->set('laravel-missing-page-redirector.redirects', [
+            '/old-page' => '/new-page',
+        ]);
+
+        $this->get('/old-page?param=1');
+
+        $this->assertRedirectedTo('/new-page?param=1');
+
+        $this->get('/old-page?param=1&param2=2');
+
+        $this->assertRedirectedTo('/new-page?param=1&param2=2');
+
+        $this->get('/old-page?param=1&param2=2&param3=3');
+
+        $this->assertRedirectedTo('/new-page?param=1&param2=2&param3=3');
+
+    }
+
+    /** @test */
     public function it_will_not_redirect_requests_that_are_not_404s()
     {
         $this->get('/response-code/500');

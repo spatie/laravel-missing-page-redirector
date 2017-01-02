@@ -2,9 +2,9 @@
 
 namespace Spatie\MissingPageRedirector\Test;
 
+use Route;
 use Illuminate\Contracts\Http\Kernel;
 use Orchestra\Testbench\TestCase as Orchestra;
-use Route;
 use Spatie\MissingPageRedirector\RedirectsMissingPages;
 
 abstract class TestCase extends Orchestra

@@ -20,7 +20,7 @@ class RedirectsMissingPagesTest extends TestCase
     /** @test */
     public function it_will_redirect_a_non_existing_page_with_a_permanent_redirect()
     {
-        $this->app['config']->set('laravel-missing-page-redirector.redirects', [
+        $this->app['config']->set('missing-page-redirector.redirects', [
             '/non-existing-page' => '/existing-page',
         ]);
 
@@ -34,7 +34,7 @@ class RedirectsMissingPagesTest extends TestCase
     /** @test */
     public function it_will_not_redirect_an_url_that_it_not_configured()
     {
-        $this->app['config']->set('laravel-missing-page-redirector.redirects', [
+        $this->app['config']->set('missing-page-redirector.redirects', [
             '/non-existing-page' => '/existing-page',
         ]);
 
@@ -46,7 +46,7 @@ class RedirectsMissingPagesTest extends TestCase
     /** @test */
     public function it_can_use_named_parameters()
     {
-        $this->app['config']->set('laravel-missing-page-redirector.redirects', [
+        $this->app['config']->set('missing-page-redirector.redirects', [
             '/segment1/{id}/segment2/{slug}' => '/segment2/{slug}',
         ]);
 
@@ -58,7 +58,7 @@ class RedirectsMissingPagesTest extends TestCase
     /** @test */
     public function it_can_use_multiple_named_parameters_in_one_segment()
     {
-        $this->app['config']->set('laravel-missing-page-redirector.redirects', [
+        $this->app['config']->set('missing-page-redirector.redirects', [
             '/new-segment/{id}-{slug}' => '/new-segment/{id}/',
         ]);
 
@@ -70,7 +70,7 @@ class RedirectsMissingPagesTest extends TestCase
     /** @test */
     public function it_can_optionally_set_the_redirect_status_code()
     {
-        $this->app['config']->set('laravel-missing-page-redirector.redirects', [
+        $this->app['config']->set('missing-page-redirector.redirects', [
             '/temporarily-moved' => ['/just-for-now', 302],
         ]);
 
@@ -83,7 +83,7 @@ class RedirectsMissingPagesTest extends TestCase
     /** @test */
     public function it_can_use_optional_parameters()
     {
-        $this->app['config']->set('laravel-missing-page-redirector.redirects', [
+        $this->app['config']->set('missing-page-redirector.redirects', [
             '/old-segment/{parameter1?}/{parameter2?}' => '/new-segment/',
         ]);
 

@@ -33,7 +33,7 @@ class MissingPageRouter
 
         collect($redirects)->each(function ($redirects, $missingUrl) {
             $this->router->get($missingUrl, function () use ($redirects) {
-                event(new RouteWasHit($this->determineRedirectUrl($redirects)));
+                event(new RouteWasHit($this->determineRedirectUrl($redirects), $missingUrl));
 
                 return redirect()->to(
                     $this->determineRedirectUrl($redirects),

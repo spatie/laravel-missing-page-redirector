@@ -1,6 +1,6 @@
 <?php
 
-namespace Spatie\MissingPageRedirector;
+namespace Spatie\MissingPageRedirector\Events;
 
 class RouteWasHit
 {

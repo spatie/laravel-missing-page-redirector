@@ -3,8 +3,8 @@
 namespace Spatie\MissingPageRedirector\Test;
 
 use Illuminate\Support\Facades\Event;
-use Spatie\MissingPageRedirector\Events\RouteWasHit;
 use Symfony\Component\HttpFoundation\Response;
+use Spatie\MissingPageRedirector\Events\RouteWasHit;
 
 class RedirectsMissingPagesTest extends TestCase
 {

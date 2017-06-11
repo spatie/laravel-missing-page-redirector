@@ -23,10 +23,10 @@
         "spatie/url": "^1.0"
     },
     "require-dev": {
-        "laravel/browser-kit-testing": "^1.0",
+        "laravel/browser-kit-testing": "^2.0",
         "orchestra/testbench": "~3.4.0",
         "orchestra/database": "~3.4.0",
-        "phpunit/phpunit": "^5.7"
+        "phpunit/phpunit": "^6.0"
     },
     "autoload": {
         "psr-4": {

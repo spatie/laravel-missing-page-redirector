@@ -4,7 +4,7 @@ namespace Spatie\MissingPageRedirector\Test;
 
 use Route;
 use Illuminate\Contracts\Http\Kernel;
-use PHPUnit_Framework_Assert as PHPUnit;
+use PHPUnit\Framework\Assert as PHPUnit;
 use Orchestra\Testbench\TestCase as Orchestra;
 use Spatie\MissingPageRedirector\RedirectsMissingPages;
 use Laravel\BrowserKitTesting\Concerns\MakesHttpRequests;

@@ -6,6 +6,7 @@ use Exception;
 use Illuminate\Routing\Router;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Spatie\MissingPageRedirector\Events\RouteWasHit;
 use Spatie\MissingPageRedirector\Redirector\Redirector;
 
 class MissingPageRouter
@@ -32,7 +33,9 @@ class MissingPageRouter
         $redirects = $this->redirector->getRedirectsFor($request);
 
         collect($redirects)->each(function ($redirects, $missingUrl) {
-            $this->router->get($missingUrl, function () use ($redirects) {
+            $this->router->get($missingUrl, function () use ($redirects, $missingUrl) {
+                event(new RouteWasHit($this->determineRedirectUrl($redirects), $missingUrl));
+
                 return redirect()->to(
                     $this->determineRedirectUrl($redirects),
                     $this->determineRedirectStatusCode($redirects)

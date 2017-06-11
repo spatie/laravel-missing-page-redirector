@@ -2,7 +2,9 @@
 
 namespace Spatie\MissingPageRedirector\Test;
 
+use Illuminate\Support\Facades\Event;
 use Symfony\Component\HttpFoundation\Response;
+use Spatie\MissingPageRedirector\Events\RouteWasHit;
 
 class RedirectsMissingPagesTest extends TestCase
 {
@@ -106,5 +108,19 @@ class RedirectsMissingPagesTest extends TestCase
         $this->get('/response-code/500');
 
         $this->assertResponseStatus(500);
+    }
+
+    /** @test */
+    public function it_will_fire_an_event_when_a_route_is_hit()
+    {
+        Event::fake();
+
+        $this->app['config']->set('laravel-missing-page-redirector.redirects', [
+            '/old-segment/{parameter1?}/{parameter2?}' => '/new-segment/',
+        ]);
+
+        $this->get('/old-segment');
+
+        Event::assertDispatched(RouteWasHit::class);
     }
 }

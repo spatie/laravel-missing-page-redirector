@@ -2,6 +2,10 @@
 
 All Notable changes to `laravel-missing-page-redirector` will be documented in this file
 
+## 1.3.0 - 2016-06-11
+
+- add `RouteWasHit`  event
+
 ## 1.2.0 - 2016-01-23
 
 - add support for Laravel 5.4

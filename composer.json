@@ -17,16 +17,16 @@
     ],
     "require": {
         "php": "^7.0",
-        "illuminate/routing": "~5.4.0",
-        "illuminate/support": "~5.4.0",
-        "illuminate/pipeline": "~5.4.0",
+        "illuminate/routing": "~5.4.25",
+        "illuminate/support": "~5.4.25",
+        "illuminate/pipeline": "~5.4.25",
         "spatie/url": "^1.0"
     },
     "require-dev": {
         "laravel/browser-kit-testing": "^2.0",
-        "orchestra/testbench": "~3.4.0",
-        "orchestra/database": "~3.4.0",
-        "phpunit/phpunit": "^6.0"
+        "orchestra/testbench": "^3.4.7",
+        "orchestra/database": "^3.4.1",
+        "phpunit/phpunit": "^6.2"
     },
     "autoload": {
         "psr-4": {

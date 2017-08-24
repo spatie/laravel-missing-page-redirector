@@ -30,15 +30,7 @@ You can install the package via composer:
 composer require spatie/laravel-missing-page-redirector
 ```
 
-Here's how to install the service provider:
-
-```php
-// config/app.php
-'providers' => [
-    ...
-    Spatie\MissingPageRedirector\MissingPageRedirectorServiceProvider::class,
-];
-```
+The package will automatically register itself.
 
 Next you must register the `Spatie\MissingPageRedirector\RedirectsMissingPages`-middleware:
 

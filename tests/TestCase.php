@@ -7,12 +7,9 @@ use Illuminate\Contracts\Http\Kernel;
 use PHPUnit\Framework\Assert as PHPUnit;
 use Orchestra\Testbench\TestCase as Orchestra;
 use Spatie\MissingPageRedirector\RedirectsMissingPages;
-use Laravel\BrowserKitTesting\Concerns\MakesHttpRequests;
 
 abstract class TestCase extends Orchestra
 {
-    use MakesHttpRequests;
-
     public function setUp()
     {
         parent::setUp();

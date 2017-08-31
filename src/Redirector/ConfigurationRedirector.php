@@ -8,6 +8,6 @@ class ConfigurationRedirector implements Redirector
 {
     public function getRedirectsFor(Request $request): array
     {
-        return config('laravel-missing-page-redirector.redirects');
+        return config('missing-page-redirector.redirects');
     }
 }

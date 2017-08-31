@@ -1,6 +1,12 @@
 # Changelog
 
-All Notable changes to `laravel-missing-page-redirector` will be documented in this file
+All notable changes to `laravel-missing-page-redirector` will be documented in this file
+
+## 2.0.0 - 2017-XX-XX
+
+- renamed config file from `laravel-missing-page-redirector` to `missing-page-redirector`
+- added support for Laravel 5.5, dropped support for older versions of the framework
+- refactored tests
 
 ## 1.3.0 - 2017-06-11
 

@@ -2,7 +2,7 @@
 
 All notable changes to `laravel-missing-page-redirector` will be documented in this file
 
-## 2.0.0 - 2017-XX-XX
+## 2.0.0 - 2017-08-31
 
 - renamed config file from `laravel-missing-page-redirector` to `missing-page-redirector`
 - added support for Laravel 5.5, dropped support for older versions of the framework

@@ -10,7 +10,7 @@ All notable changes to `laravel-missing-page-redirector` will be documented in t
 
 ## 1.3.0 - 2017-06-11
 
-- add `RouteWasHit`  event
+- add `RouteWasHit` event
 
 ## 1.2.0 - 2017-01-23
 

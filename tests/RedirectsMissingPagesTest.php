@@ -124,4 +124,22 @@ class RedirectsMissingPagesTest extends TestCase
 
         Event::assertDispatched(RouteWasHit::class);
     }
+    
+    /** @test */
+    public function it_will_redirect_depending_on_status_code_defined()
+    {
+        $this->app['config']->set('missing-page-redirector.status_code', [404, 500]);
+        $this
+            ->get('/response-code/500')
+            ->assertStatus(500);
+    }
+    
+    /** @test */
+    public function it_will_redirect_depending_on_any_status_code()
+    {
+        $this->app['config']->set('missing-page-redirector.status_code', []);
+        $this
+            ->get('/response-code/401')
+            ->assertStatus(401);
+    }
 }

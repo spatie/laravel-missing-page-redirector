@@ -13,6 +13,7 @@ return [
      * It also it also accepts an array.
      * To trigger redirects on any HTTP code leave it empty
      */
+    'status_code' => \Symfony\Component\HttpFoundation\Response::HTTP_NOT_FOUND,
     
     /*
      * When using the `ConfigurationRedirector` you can specify the redirects in this array.

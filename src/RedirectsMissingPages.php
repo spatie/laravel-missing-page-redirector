@@ -12,12 +12,10 @@ class RedirectsMissingPages
     {
         $response = $next($request);
 
-        $allowedStatusCode = config('missing-page-redirector.status_code', [Response::HTTP_NOT_FOUND]);
-        if(!is_array($allowedStatusCode)){
-            $allowedStatusCode = is_integer($allowedStatusCode) ? [$allowedStatusCode] : [];
-        }
+        $allowedStatusCodes = config('missing-page-redirector.redirect_status_codes', [Response::HTTP_NOT_FOUND]);
 
-        if (!empty($allowedStatusCode) && !in_array($response->getStatusCode(), $allowedStatusCode)) {
+        //If option is set as null or the response status code is not present in the config then skip redirects
+        if (is_null($allowedStatusCodes) || (!empty($allowedStatusCodes) && !in_array($response->getStatusCode(), $allowedStatusCodes))) {
             return $response;
         }
         

@@ -10,10 +10,9 @@ return [
     
     /*
      * This allows you to trigger the redirects on all kind of HTTP codes.
-     * It also it also accepts an array.
-     * To trigger redirects on any HTTP code leave it empty
+     * To trigger redirects on any HTTP code leave it as an empty array
      */
-    'status_code' => \Symfony\Component\HttpFoundation\Response::HTTP_NOT_FOUND,
+    'redirect_status_codes' => [\Symfony\Component\HttpFoundation\Response::HTTP_NOT_FOUND],
     
     /*
      * When using the `ConfigurationRedirector` you can specify the redirects in this array.

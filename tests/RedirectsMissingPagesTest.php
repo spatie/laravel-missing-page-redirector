@@ -126,20 +126,28 @@ class RedirectsMissingPagesTest extends TestCase
     }
     
     /** @test */
-    public function it_will_redirect_depending_on_status_code_defined()
+    public function it_will_redirect_depending_on_redirect_status_codes_defined()
     {
-        $this->app['config']->set('missing-page-redirector.status_code', [404, 500]);
+        $this->app['config']->set('missing-page-redirector.redirect_status_codes', [404, 500]);
+        $this->app['config']->set('missing-page-redirector.redirects', [
+            '/non-existing-page' => '/existing-page',
+        ]);
+        
         $this
-            ->get('/response-code/500')
-            ->assertStatus(500);
+            ->get('non-existing-page')
+            ->assertStatus(Response::HTTP_MOVED_PERMANENTLY)
+            ->assertRedirect('/existing-page');
     }
     
     /** @test */
-    public function it_will_redirect_depending_on_any_status_code()
+    public function it_will_redirect_on_any_status_code()
     {
-        $this->app['config']->set('missing-page-redirector.status_code', []);
+        $this->app['config']->set('missing-page-redirector.redirect_status_codes', []);
+        $this->app['config']->set('missing-page-redirector.redirects', [
+            '/non-existing-page' => '/existing-page',
+        ]);
         $this
-            ->get('/response-code/401')
-            ->assertStatus(401);
+            ->get('non-existing-page')
+            ->assertRedirect('/existing-page');
     }
 }

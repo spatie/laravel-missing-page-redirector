@@ -9,10 +9,13 @@ return [
     'redirector' => \Spatie\MissingPageRedirector\Redirector\ConfigurationRedirector::class,
     
     /*
-     * This allows you to trigger the redirects on all kind of HTTP codes.
-     * To trigger redirects on any HTTP code leave it as an empty array
+     * By default the package will only redirect 404s. If you want to redirect on other
+     * response codes, just add them to the array. Leave the array empty to redirect
+     * always no matter what the response code.
      */
-    'redirect_status_codes' => [\Symfony\Component\HttpFoundation\Response::HTTP_NOT_FOUND],
+    'redirect_status_codes' => [
+        \Symfony\Component\HttpFoundation\Response::HTTP_NOT_FOUND
+    ],
     
     /*
      * When using the `ConfigurationRedirector` you can specify the redirects in this array.

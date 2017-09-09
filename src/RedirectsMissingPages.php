@@ -12,10 +12,13 @@ class RedirectsMissingPages
     {
         $response = $next($request);
 
-        if ($response->getStatusCode() !== Response::HTTP_NOT_FOUND) {
+        $allowedStatusCodes = config('missing-page-redirector.redirect_status_codes');
+        
+        //If option is set as null or the response status code is not present in the config then skip redirects
+        if (is_null($allowedStatusCodes) || (!empty($allowedStatusCodes) && !in_array($response->getStatusCode(), $allowedStatusCodes))) {
             return $response;
         }
-
+        
         $redirectResponse = app(MissingPageRouter::class)->getRedirectFor($request);
 
         return $redirectResponse ?? $response;

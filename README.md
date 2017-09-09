@@ -98,6 +98,14 @@ Optional parameters are also... an option:
     ],
 ```
 
+By default it only redirects if the request has a `404` response code but it's possible to be redirected on any response code.
+To achieve this you may change the ```redirect_status_codes``` option to an array of response codes or leave it empty if you wish to be redirected no matter what the response code was sent to the URL.
+You may override this using the following syntax to achieve this:  
+
+```php
+    'redirect_status_codes' => [\Symfony\Component\HttpFoundation\Response::HTTP_NOT_FOUND],
+```
+
 It is also possible to optionally specify which http response code is used when performing the redirect. By default the ```301 Moved Permanently``` response code is set. You may override this using the following syntax:   
 
 ```php

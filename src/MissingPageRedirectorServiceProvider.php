@@ -8,9 +8,6 @@ use Spatie\MissingPageRedirector\Redirector\Redirector;
 
 class MissingPageRedirectorServiceProvider extends ServiceProvider
 {
-    /**
-     * Bootstrap the application services.
-     */
     public function boot()
     {
         $this->publishes([
@@ -28,9 +25,6 @@ class MissingPageRedirectorServiceProvider extends ServiceProvider
         });
     }
 
-    /**
-     * Register the application services.
-     */
     public function register()
     {
         $this->mergeConfigFrom(__DIR__.'/../config/missing-page-redirector.php', 'missing-page-redirector');

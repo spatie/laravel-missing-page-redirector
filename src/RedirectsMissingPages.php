@@ -12,15 +12,27 @@ class RedirectsMissingPages
     {
         $response = $next($request);
 
-        $allowedStatusCodes = config('missing-page-redirector.redirect_status_codes');
-        
-        //If option is set as null or the response status code is not present in the config then skip redirects
-        if (is_null($allowedStatusCodes) || (!empty($allowedStatusCodes) && !in_array($response->getStatusCode(), $allowedStatusCodes))) {
+        if (! $this->shouldRedirect($response)) {
             return $response;
         }
-        
+
         $redirectResponse = app(MissingPageRouter::class)->getRedirectFor($request);
 
         return $redirectResponse ?? $response;
+    }
+
+    protected function shouldRedirect($response): bool
+    {
+        $redirectStatusCodes = config('missing-page-redirector.redirect_status_codes');
+
+        if (is_null($redirectStatusCodes)) {
+            return false;
+        }
+
+        if (! count($redirectStatusCodes)) {
+            return true;
+        }
+
+        return in_array($response->getStatusCode(), $redirectStatusCodes);
     }
 }

@@ -124,7 +124,7 @@ class RedirectsMissingPagesTest extends TestCase
 
         Event::assertDispatched(RouteWasHit::class);
     }
-    
+
     /** @test */
     public function it_will_redirect_depending_on_redirect_status_codes_defined()
     {
@@ -132,13 +132,13 @@ class RedirectsMissingPagesTest extends TestCase
         $this->app['config']->set('missing-page-redirector.redirects', [
             '/non-existing-page' => '/existing-page',
         ]);
-        
+
         $this
             ->get('non-existing-page')
             ->assertStatus(Response::HTTP_MOVED_PERMANENTLY)
             ->assertRedirect('/existing-page');
     }
-    
+
     /** @test */
     public function it_will_redirect_on_any_status_code()
     {

@@ -8,11 +8,6 @@ use Spatie\MissingPageRedirector\Events\RouteWasHit;
 
 class RedirectsMissingPagesTest extends TestCase
 {
-    public function setUp()
-    {
-        parent::setUp();
-    }
-
     /** @test */
     public function it_will_not_interfere_with_existing_pages()
     {
@@ -104,7 +99,7 @@ class RedirectsMissingPagesTest extends TestCase
     }
 
     /** @test */
-    public function it_will_not_redirect_requests_that_are_not_404s()
+    public function by_default_it_will_not_redirect_requests_that_are_not_404s()
     {
         $this
             ->get('/response-code/500')
@@ -123,5 +118,52 @@ class RedirectsMissingPagesTest extends TestCase
         $this->get('/old-segment');
 
         Event::assertDispatched(RouteWasHit::class);
+    }
+    
+    /** @test */
+    public function it_will_redirect_depending_on_redirect_status_codes_defined()
+    {
+        $this->app['config']->set('missing-page-redirector.redirect_status_codes', [
+            418,
+            500,
+        ]);
+
+        $this->app['config']->set('missing-page-redirector.redirects', [
+            '/response-code/500' => '/existing-page',
+        ]);
+
+        $this
+            ->get('/response-code/500')
+            ->assertRedirect('/existing-page');
+    }
+
+    /** @test */
+    public function it_will_not_redirect_if_the_status_code_is_not_specified_in_the_config_file()
+    {
+        $this->app['config']->set('missing-page-redirector.redirect_status_codes', [
+            418,
+            403,
+        ]);
+
+        $this->app['config']->set('missing-page-redirector.redirects', [
+            '/response-code/500' => '/existing-page',
+        ]);
+
+        $this
+            ->get('/response-code/500')
+            ->assertStatus(500);
+    }
+    
+    /** @test */
+    public function it_will_redirect_on_any_status_code()
+    {
+        $this->app['config']->set('missing-page-redirector.redirect_status_codes', []);
+        $this->app['config']->set('missing-page-redirector.redirects', [
+            '/response-code/418' => '/existing-page',
+        ]);
+
+        $this
+            ->get('/response-code/418')
+            ->assertRedirect('/existing-page');
     }
 }

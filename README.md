@@ -53,15 +53,23 @@ This is the contents of the published config file:
 
 ```php
 return [
-
-    /**
+    /*
      * This is the class responsible for providing the URLs which must be redirected.
      * The only requirement for the redirector is that it needs to implement the
      * `Spatie\MissingPageRedirector\Redirector\Redirector`-interface
      */
     'redirector' => \Spatie\MissingPageRedirector\Redirector\ConfigurationRedirector::class,
-
-    /**
+    
+    /*
+     * By default the package will only redirect 404s. If you want to redirect on other
+     * response codes, just add them to the array. Leave the array empty to redirect
+     * always no matter what the response code.
+     */
+    'redirect_status_codes' => [
+        \Symfony\Component\HttpFoundation\Response::HTTP_NOT_FOUND
+    ],
+    
+    /*
      * When using the `ConfigurationRedirector` you can specify the redirects in this array.
      * You can use Laravel's route parameters here.
      */
@@ -69,6 +77,7 @@ return [
 //        '/non-existing-page' => '/existing-page',
 //        '/old-blog/{url}' => '/new-blog/{url}',
     ],
+
 ];
 ```
 
@@ -96,6 +105,14 @@ Optional parameters are also... an option:
     'redirects' => [
        '/old-blog/{url?}' => '/new-blog/{url}',
     ],
+```
+
+By default it only redirects if the request has a `404` response code but it's possible to be redirected on any response code.
+To achieve this you may change the ```redirect_status_codes``` option to an array of response codes or leave it empty if you wish to be redirected no matter what the response code was sent to the URL.
+You may override this using the following syntax to achieve this:  
+
+```php
+    'redirect_status_codes' => [\Symfony\Component\HttpFoundation\Response::HTTP_NOT_FOUND],
 ```
 
 It is also possible to optionally specify which http response code is used when performing the redirect. By default the ```301 Moved Permanently``` response code is set. You may override this using the following syntax:   

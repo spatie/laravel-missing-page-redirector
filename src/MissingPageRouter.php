@@ -38,7 +38,11 @@ class MissingPageRouter
                 $statusCode = $this->determineRedirectStatusCode($redirects);
                 
                 event(new RouteWasHit($redirectUrl, $missingUrl, $statusCode));
-
+                
+                if(empty($redirectUrl) && !empty($statusCode)){
+                    response()->setStatusCode($statusCode);                    
+                }
+                
                 return redirect()->to(
                     $redirectUrl,
                     $statusCode

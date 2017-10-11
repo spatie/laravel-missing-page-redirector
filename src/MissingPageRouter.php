@@ -39,10 +39,6 @@ class MissingPageRouter
                 
                 event(new RouteWasHit($redirectUrl, $missingUrl, $statusCode));
                 
-                if(empty($redirectUrl) && !empty($statusCode)){
-                    response()->setStatusCode($statusCode);                    
-                }
-                
                 return redirect()->to(
                     $redirectUrl,
                     $statusCode
@@ -56,6 +52,21 @@ class MissingPageRouter
             return;
         }
     }
+    
+    /**
+     * @param \Symfony\Component\HttpFoundation\Request $request
+     *
+     * @return int|null
+     */
+    public function getStatusCodeFor(Request $request)
+    {
+        $redirects = $this->redirector->getRedirectsFor($request);
+        $statusCode = null;
+        collect($redirects)->each(function ($redirects) use (&$statusCode){
+            $statusCode = $this->determineStatusCode($redirects);
+        });
+        return $statusCode;
+    }
 
     protected function determineRedirectUrl($redirects): string
     {
@@ -65,10 +76,15 @@ class MissingPageRouter
 
         return $this->resolveRouterParameters($redirects);
     }
+    
+    protected function determineStatusCode($redirects)
+    {
+        return is_array($redirects) ? $redirects[1] : null;
+    }
 
     protected function determineRedirectStatusCode($redirects): int
     {
-        return is_array($redirects) ? $redirects[1] : Response::HTTP_MOVED_PERMANENTLY;
+        return $this->determineStatusCode($redirects) ?: Response::HTTP_MOVED_PERMANENTLY;
     }
 
     protected function resolveRouterParameters(string $redirectUrl): string

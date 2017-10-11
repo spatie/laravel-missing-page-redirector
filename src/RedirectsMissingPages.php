@@ -4,7 +4,6 @@ namespace Spatie\MissingPageRedirector;
 
 use Closure;
 use Illuminate\Http\Request;
-use Symfony\Component\HttpFoundation\Response;
 
 class RedirectsMissingPages
 {
@@ -17,8 +16,16 @@ class RedirectsMissingPages
         }
 
         $redirectResponse = app(MissingPageRouter::class)->getRedirectFor($request);
-
-        return $redirectResponse ?? $response;
+        if(!empty($redirectResponse)){
+            return $redirectResponse;
+        }
+        
+        $overrideStatusCode = app(MissingPageRouter::class)->getStatusCodeFor($request);
+        if($overrideStatusCode){
+            $response->setStatusCode($overrideStatusCode);
+        }
+        
+        return $response;
     }
 
     protected function shouldRedirect($response): bool

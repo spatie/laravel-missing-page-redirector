@@ -166,4 +166,16 @@ class RedirectsMissingPagesTest extends TestCase
             ->get('/response-code/418')
             ->assertRedirect('/existing-page');
     }
+    
+     /** @test */
+    public function it_will_override_status_code_on_empty_redirect_url()
+    {
+        $this->app['config']->set('missing-page-redirector.redirects', [
+            '/temporarily-moved' => ['', 410],
+        ]);
+
+        $this
+            ->get('/temporarily-moved')
+            ->assertStatus(410);
+    }
 }

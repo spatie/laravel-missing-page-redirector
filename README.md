@@ -113,6 +113,15 @@ It is also possible to optionally specify which http response code is used when 
     ],
 ```
 
+You can also override the http response code without a redirect. Example:   
+
+```php
+    'redirects' => [
+       'deleted-page' => ['', 410],
+    ],
+```
+
+
 ## Creating your own redirector
 
 By default this package will use the `Spatie\MissingPageRedirector\Redirector\ConfigurationRedirector` which will get its redirects from the config file. If you want to use another source for your redirects (for example a database) you can create your own redirector.

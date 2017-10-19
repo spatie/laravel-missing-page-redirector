@@ -10,10 +10,10 @@ class RouteWasHit
     /** @var string */
     public $missingUrl;
     
-    /** @var integer */
+    /** @var integer|null */
     public $statusCode;
 
-    public function __construct(string $route, string $missingUrl, int $statusCode)
+    public function __construct(string $route, string $missingUrl, int $statusCode = null)
     {
         $this->route = $route;
 

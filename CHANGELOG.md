@@ -2,6 +2,10 @@
 
 All notable changes to `laravel-missing-page-redirector` will be documented in this file
 
+## 2.1.1 - 2017-10-19
+
+- added response code to `RouteWasHit` event
+
 ## 2.1.0 - 2017-09-09
 
 - allow redirects to be enable on a status code basis

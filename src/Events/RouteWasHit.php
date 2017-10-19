@@ -9,8 +9,8 @@ class RouteWasHit
 
     /** @var string */
     public $missingUrl;
-    
-    /** @var integer|null */
+
+    /** @var int|null */
     public $statusCode;
 
     public function __construct(string $route, string $missingUrl, int $statusCode = null)
@@ -18,7 +18,7 @@ class RouteWasHit
         $this->route = $route;
 
         $this->missingUrl = $missingUrl;
-        
+
         $this->statusCode = $statusCode;
     }
 }

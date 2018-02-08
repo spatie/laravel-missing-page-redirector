@@ -36,7 +36,7 @@ class MissingPageRouter
             $this->router->get($missingUrl, function () use ($redirects, $missingUrl) {
                 $redirectUrl = $this->determineRedirectUrl($redirects);
                 $statusCode = $this->determineRedirectStatusCode($redirects);
-                
+
                 event(new RouteWasHit($redirectUrl, $missingUrl, $statusCode));
 
                 return redirect()->to(

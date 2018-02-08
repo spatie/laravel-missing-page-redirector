@@ -3,32 +3,26 @@
 All notable changes to `laravel-missing-page-redirector` will be documented in this file
 
 ## 2.1.1 - 2017-10-19
-
-- added response code to `RouteWasHit` event
+- Added: Response code to `RouteWasHit` event
 
 ## 2.1.0 - 2017-09-09
-
-- allow redirects to be enable on a status code basis
+- Added: Allow redirects to be enable on a status code basis
 
 ## 2.0.0 - 2017-08-31
-
-- renamed config file from `laravel-missing-page-redirector` to `missing-page-redirector`
-- added support for Laravel 5.5, dropped support for older versions of the framework
-- refactored tests
+- Added: Laravel 5.5 compatibility
+- Removed: Dropped support for older Laravel versions
+- Changed: Renamed config file from `laravel-missing-page-redirector` to `missing-page-redirector`
+- Refactored tests
 
 ## 1.3.0 - 2017-06-11
-
-- add `RouteWasHit` event
+- Added: `RouteWasHit` event
 
 ## 1.2.0 - 2017-01-23
-
-- add support for Laravel 5.4
-- drop support for Laravel 5.3
+- Added: Laravel 5.4 compatibility
+- Removed: Dropped support for older Laravel versions
 
 ## 1.1.0 - 2016-10-27
-
-- add support for determining http status code for a redirect
+- Added: Support for determining http status code for a redirect
 
 ## 1.0.0 - 2016-10-14
-
-- initial release
+- Initial release

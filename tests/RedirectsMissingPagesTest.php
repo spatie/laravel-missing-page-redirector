@@ -119,7 +119,7 @@ class RedirectsMissingPagesTest extends TestCase
 
         Event::assertDispatched(RouteWasHit::class);
     }
-    
+
     /** @test */
     public function it_will_redirect_depending_on_redirect_status_codes_defined()
     {
@@ -153,7 +153,7 @@ class RedirectsMissingPagesTest extends TestCase
             ->get('/response-code/500')
             ->assertStatus(500);
     }
-    
+
     /** @test */
     public function it_will_redirect_on_any_status_code()
     {

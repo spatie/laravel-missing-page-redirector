@@ -3,6 +3,7 @@
 namespace Spatie\MissingPageRedirector\Test;
 
 use Illuminate\Support\Facades\Event;
+use Spatie\MissingPageRedirector\Events\RedirectNotFound;
 use Symfony\Component\HttpFoundation\Response;
 use Spatie\MissingPageRedirector\Events\RouteWasHit;
 
@@ -165,5 +166,15 @@ class RedirectsMissingPagesTest extends TestCase
         $this
             ->get('/response-code/418')
             ->assertRedirect('/existing-page');
+    }
+
+    /** @test */
+    public function it_will_fire_an_event_when_no_redirect_was_found()
+    {
+        Event::fake();
+
+        $this->get('/non-existing-route');
+
+        Event::assertDispatched(RedirectNotFound::class);
     }
 }

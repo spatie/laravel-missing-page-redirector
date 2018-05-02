@@ -117,8 +117,6 @@ It is also possible to optionally specify which http response code is used when 
 
 The package will fire a `RouteWasHit` event when it found a redirect for the route. A `RedirectNotFound` is fired when no redirect was found.
 
-You can listen for these events in your application. For example; listening for the `RedirectNotFound` event to log requests with a `404` response code, which might require a redirect.
-
 ## Creating your own redirector
 
 By default this package will use the `Spatie\MissingPageRedirector\Redirector\ConfigurationRedirector` which will get its redirects from the config file. If you want to use another source for your redirects (for example a database) you can create your own redirector.

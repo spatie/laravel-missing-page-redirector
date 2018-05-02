@@ -2,6 +2,9 @@
 
 All notable changes to `laravel-missing-page-redirector` will be documented in this file
 
+## 2.3.0 - 2018-05-02
+- Added: an event will get fired when a route was not found
+
 ## 2.2.0 - 2018-02-08
 - Added: Laravel 5.6 compatibility
 

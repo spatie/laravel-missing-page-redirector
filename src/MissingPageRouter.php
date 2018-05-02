@@ -8,6 +8,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Spatie\MissingPageRedirector\Events\RouteWasHit;
 use Spatie\MissingPageRedirector\Redirector\Redirector;
+use Spatie\MissingPageRedirector\Events\RedirectNotFound;
 
 class MissingPageRouter
 {
@@ -49,6 +50,8 @@ class MissingPageRouter
         try {
             return $this->router->dispatch($request);
         } catch (Exception $e) {
+            event(new RedirectNotFound($request));
+
             return;
         }
     }

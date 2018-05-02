@@ -51,7 +51,7 @@ class MissingPageRouter
             return $this->router->dispatch($request);
         } catch (Exception $e) {
             event(new RedirectNotFound($request));
-            
+
             return;
         }
     }

@@ -3,9 +3,9 @@
 namespace Spatie\MissingPageRedirector\Test;
 
 use Illuminate\Support\Facades\Event;
-use Spatie\MissingPageRedirector\Events\RedirectNotFound;
 use Symfony\Component\HttpFoundation\Response;
 use Spatie\MissingPageRedirector\Events\RouteWasHit;
+use Spatie\MissingPageRedirector\Events\RedirectNotFound;
 
 class RedirectsMissingPagesTest extends TestCase
 {

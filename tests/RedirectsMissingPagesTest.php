@@ -173,7 +173,7 @@ class RedirectsMissingPagesTest extends TestCase
     {
         Event::fake();
 
-        $this->get('/non-existing-route');
+        $this->get('/response-code/404');
 
         Event::assertDispatched(RedirectNotFound::class);
     }

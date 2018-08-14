@@ -83,7 +83,7 @@ class RedirectsMissingPagesTest extends TestCase
     public function it_can_use_optional_parameters()
     {
         $this->app['config']->set('missing-page-redirector.redirects', [
-            '/old-segment/{parameter1?}/{parameter2?}' => '/new-segment/',
+            '/old-segment/{parameter1?}/{parameter2?}' => '/new-segment/{parameter1}/{parameter2}',
         ]);
 
         $this
@@ -92,11 +92,11 @@ class RedirectsMissingPagesTest extends TestCase
 
         $this
             ->get('/old-segment/old-segment2')
-            ->assertRedirect('/new-segment');
+            ->assertRedirect('/new-segment/old-segment2');
 
         $this
             ->get('/old-segment/old-segment2/old-segment3')
-            ->assertRedirect('/new-segment');
+            ->assertRedirect('/new-segment/old-segment2/old-segment3');
     }
 
     /** @test */

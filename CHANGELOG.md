@@ -2,6 +2,10 @@
 
 All notable changes to `laravel-missing-page-redirector` will be documented in this file
 
+## 2.3.1 - 2018-08-14
+
+- Fixed: Optional parameters not working as expected (#44)
+
 ## 2.3.0 - 2018-05-02
 - Added: an event will get fired when a route was not found
 

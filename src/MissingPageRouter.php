@@ -76,7 +76,7 @@ class MissingPageRouter
             $redirectUrl = str_replace("{{$key}}", $value, $redirectUrl);
         }
 
-        $redirectUrl = preg_replace('/\/{[\w-_]+}/', '', $redirectUrl);
+        $redirectUrl = preg_replace('/\/{[\w-]+}/', '', $redirectUrl);
 
         return $redirectUrl;
     }

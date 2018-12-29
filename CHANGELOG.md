@@ -2,6 +2,9 @@
 
 All notable changes to `laravel-missing-page-redirector` will be documented in this file
 
+## 2.3.3 - 2018-12-29
+- fix for PHP 7.3
+
 ## 2.3.2 - 2018-08-27
 - Added: Laravel 5.7 compatibility
 

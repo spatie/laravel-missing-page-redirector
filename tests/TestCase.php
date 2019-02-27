@@ -6,11 +6,12 @@ use Route;
 use Illuminate\Contracts\Http\Kernel;
 use PHPUnit\Framework\Assert as PHPUnit;
 use Orchestra\Testbench\TestCase as Orchestra;
+use Spatie\MissingPageRedirector\MissingPageRedirectorServiceProvider;
 use Spatie\MissingPageRedirector\RedirectsMissingPages;
 
 abstract class TestCase extends Orchestra
 {
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
 
@@ -25,7 +26,7 @@ abstract class TestCase extends Orchestra
     protected function getPackageProviders($app)
     {
         return [
-            \Spatie\MissingPageRedirector\MissingPageRedirectorServiceProvider::class,
+            MissingPageRedirectorServiceProvider::class,
         ];
     }
 

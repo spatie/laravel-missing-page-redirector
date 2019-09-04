@@ -6,8 +6,8 @@ use Route;
 use Illuminate\Contracts\Http\Kernel;
 use PHPUnit\Framework\Assert as PHPUnit;
 use Orchestra\Testbench\TestCase as Orchestra;
-use Spatie\MissingPageRedirector\MissingPageRedirectorServiceProvider;
 use Spatie\MissingPageRedirector\RedirectsMissingPages;
+use Spatie\MissingPageRedirector\MissingPageRedirectorServiceProvider;
 
 abstract class TestCase extends Orchestra
 {

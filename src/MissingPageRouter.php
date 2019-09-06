@@ -4,11 +4,11 @@ namespace Spatie\MissingPageRedirector;
 
 use Exception;
 use Illuminate\Routing\Router;
-use Spatie\MissingPageRedirector\Events\RedirectNotFound;
-use Spatie\MissingPageRedirector\Events\RouteWasHit;
-use Spatie\MissingPageRedirector\Redirector\Redirector;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Spatie\MissingPageRedirector\Events\RouteWasHit;
+use Spatie\MissingPageRedirector\Redirector\Redirector;
+use Spatie\MissingPageRedirector\Events\RedirectNotFound;
 
 class MissingPageRouter
 {
@@ -20,7 +20,7 @@ class MissingPageRouter
 
     public function __construct(Router $router, Redirector $redirector)
     {
-        $this->router     = $router;
+        $this->router = $router;
         $this->redirector = $redirector;
     }
 
@@ -39,7 +39,7 @@ class MissingPageRouter
                     $this->determineRedirectUrl($redirects),
                     $request
                 );
-                $statusCode  = $this->determineRedirectStatusCode($redirects);
+                $statusCode = $this->determineRedirectStatusCode($redirects);
 
                 event(new RouteWasHit($redirectUrl, $missingUrl, $statusCode));
 
@@ -86,10 +86,10 @@ class MissingPageRouter
 
     protected function maybePreserveQueryParameters(string $redirectUrl, Request $request): string
     {
-        if (!config('missing-page-redirector.preserve_query_parameters')) {
+        if (! config('missing-page-redirector.preserve_query_parameters')) {
             return $redirectUrl;
         }
 
-        return trim($redirectUrl . '?' . $request->getQueryString(), '?');
+        return trim($redirectUrl.'?'.$request->getQueryString(), '?');
     }
 }

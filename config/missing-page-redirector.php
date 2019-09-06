@@ -17,6 +17,8 @@ return [
         \Symfony\Component\HttpFoundation\Response::HTTP_NOT_FOUND,
     ],
 
+    'preserve_query_parameters' => false,
+
     /*
      * When using the `ConfigurationRedirector` you can specify the redirects in this array.
      * You can use Laravel's route parameters here.

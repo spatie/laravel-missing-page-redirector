@@ -4,11 +4,11 @@ namespace Spatie\MissingPageRedirector;
 
 use Exception;
 use Illuminate\Routing\Router;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
+use Spatie\MissingPageRedirector\Events\RedirectNotFound;
 use Spatie\MissingPageRedirector\Events\RouteWasHit;
 use Spatie\MissingPageRedirector\Redirector\Redirector;
-use Spatie\MissingPageRedirector\Events\RedirectNotFound;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 class MissingPageRouter
 {
@@ -20,7 +20,7 @@ class MissingPageRouter
 
     public function __construct(Router $router, Redirector $redirector)
     {
-        $this->router = $router;
+        $this->router     = $router;
         $this->redirector = $redirector;
     }
 
@@ -33,10 +33,13 @@ class MissingPageRouter
     {
         $redirects = $this->redirector->getRedirectsFor($request);
 
-        collect($redirects)->each(function ($redirects, $missingUrl) {
-            $this->router->get($missingUrl, function () use ($redirects, $missingUrl) {
-                $redirectUrl = $this->determineRedirectUrl($redirects);
-                $statusCode = $this->determineRedirectStatusCode($redirects);
+        collect($redirects)->each(function ($redirects, $missingUrl) use ($request) {
+            $this->router->get($missingUrl, function () use ($redirects, $missingUrl, $request) {
+                $redirectUrl = $this->maybePreserveQueryParameters(
+                    $this->determineRedirectUrl($redirects),
+                    $request
+                );
+                $statusCode  = $this->determineRedirectStatusCode($redirects);
 
                 event(new RouteWasHit($redirectUrl, $missingUrl, $statusCode));
 
@@ -79,5 +82,14 @@ class MissingPageRouter
         $redirectUrl = preg_replace('/\/{[\w-]+}/', '', $redirectUrl);
 
         return $redirectUrl;
+    }
+
+    protected function maybePreserveQueryParameters(string $redirectUrl, Request $request): string
+    {
+        if (!config('missing-page-redirector.preserve_query_parameters')) {
+            return $redirectUrl;
+        }
+
+        return trim($redirectUrl . '?' . $request->getQueryString(), '?');
     }
 }

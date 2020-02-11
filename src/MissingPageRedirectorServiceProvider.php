@@ -2,7 +2,6 @@
 
 namespace Spatie\MissingPageRedirector;
 
-use Illuminate\Routing\Router;
 use Illuminate\Support\ServiceProvider;
 use Spatie\MissingPageRedirector\Redirector\Redirector;
 
@@ -15,14 +14,7 @@ class MissingPageRedirectorServiceProvider extends ServiceProvider
         ], 'config');
 
         $this->app->bind(Redirector::class, config('missing-page-redirector.redirector'));
-
-        $this->app->bind(MissingPageRouter::class, function () {
-            $router = new Router($this->app['events']);
-
-            $redirector = $this->app->make(Redirector::class);
-
-            return new MissingPageRouter($router, $redirector);
-        });
+        $this->app->bind(MissingPageRouter::class, MissingPageRouter::class);
     }
 
     public function register()

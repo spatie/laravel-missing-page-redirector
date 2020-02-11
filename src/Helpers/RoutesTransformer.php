@@ -39,7 +39,7 @@ class RoutesTransformer
         $route = new Route(['GET', 'HEAD'], $missingUrl, null);
 
         return $route->setAction(RouteAction::parse($route->uri(), function () use ($route, $redirectUrl, $missingUrl) {
-            $statusCode  = self::determineRedirectStatusCode($redirectUrl);
+            $statusCode = self::determineRedirectStatusCode($redirectUrl);
             $redirectUrl = self::determineRedirectUrl($route, $redirectUrl);
 
             event(new RouteWasHit($redirectUrl, $missingUrl, $statusCode));

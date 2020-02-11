@@ -3,7 +3,6 @@
 namespace Spatie\MissingPageRedirector;
 
 use Exception;
-use Illuminate\Routing\Router;
 use Spatie\MissingPageRedirector\Events\RedirectNotFound;
 use Spatie\MissingPageRedirector\Helpers\RoutesTransformer;
 use Spatie\MissingPageRedirector\Redirector\Redirector;
@@ -22,7 +21,7 @@ class MissingPageRouter
     /**
      * @param \Illuminate\Http\Request|mixed $request
      *
-     * @return \Illuminate\Http\Response|null
+     * @return \Illuminate\Http\Response|mixed|void
      */
     public function getRedirectFor(Request $request)
     {
@@ -35,7 +34,7 @@ class MissingPageRouter
         } catch (Exception $e) {
             event(new RedirectNotFound($request));
 
-            return null;
+            return;
         }
     }
 }

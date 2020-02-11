@@ -6,7 +6,6 @@ use Exception;
 use Spatie\MissingPageRedirector\Events\RedirectNotFound;
 use Spatie\MissingPageRedirector\Helpers\RoutesTransformer;
 use Spatie\MissingPageRedirector\Redirector\Redirector;
-use Symfony\Component\HttpFoundation\Request;
 
 class MissingPageRouter
 {
@@ -19,11 +18,11 @@ class MissingPageRouter
     }
 
     /**
-     * @param \Illuminate\Http\Request|mixed $request
+     * @param \Symfony\Component\HttpFoundation\Request|mixed $request
      *
      * @return \Illuminate\Http\Response|mixed|void
      */
-    public function getRedirectFor(Request $request)
+    public function getRedirectFor($request)
     {
         $routes = RoutesTransformer::transform(
             $this->redirector->getRedirectsFor($request)

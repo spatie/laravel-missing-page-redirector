@@ -22,8 +22,8 @@ return [
      * You can use Laravel's route parameters here.
      */
     'redirects' => [
-//        '/non-existing-page' => '/existing-page',
-//        '/old-blog/{url}' => '/new-blog/{url}',
+        //        '/non-existing-page' => '/existing-page',
+        //        '/old-blog/{url}' => '/new-blog/{url}',
     ],
 
 ];

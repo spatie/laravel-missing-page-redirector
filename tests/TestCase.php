@@ -2,12 +2,12 @@
 
 namespace Spatie\MissingPageRedirector\Test;
 
-use Route;
 use Illuminate\Contracts\Http\Kernel;
-use PHPUnit\Framework\Assert as PHPUnit;
 use Orchestra\Testbench\TestCase as Orchestra;
-use Spatie\MissingPageRedirector\RedirectsMissingPages;
+use PHPUnit\Framework\Assert as PHPUnit;
+use Route;
 use Spatie\MissingPageRedirector\MissingPageRedirectorServiceProvider;
+use Spatie\MissingPageRedirector\RedirectsMissingPages;
 
 abstract class TestCase extends Orchestra
 {

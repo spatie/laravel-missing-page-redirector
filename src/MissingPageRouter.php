@@ -4,11 +4,11 @@ namespace Spatie\MissingPageRedirector;
 
 use Exception;
 use Illuminate\Routing\Router;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
+use Spatie\MissingPageRedirector\Events\RedirectNotFound;
 use Spatie\MissingPageRedirector\Events\RouteWasHit;
 use Spatie\MissingPageRedirector\Redirector\Redirector;
-use Spatie\MissingPageRedirector\Events\RedirectNotFound;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 class MissingPageRouter
 {

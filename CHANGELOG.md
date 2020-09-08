@@ -2,6 +2,10 @@
 
 All notable changes to `laravel-missing-page-redirector` will be documented in this file
 
+## 2.6.0 - 2020-09-08
+
+- add support for Laravel 8
+
 ## 2.5.0 - 2019-09-04
 
 - add support for Laravel 6

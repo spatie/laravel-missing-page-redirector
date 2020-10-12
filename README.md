@@ -12,7 +12,7 @@ When installed you only need to [add your redirects to the config file](https://
 
 ## Support us
 
-[![Image](https://github-ads.s3.eu-central-1.amazonaws.com/laravel-missing-page-redirector.jpg)](https://spatie.be/github-ad-click/laravel-missing-page-redirector)
+[<img src="https://github-ads.s3.eu-central-1.amazonaws.com/laravel-missing-page-redirector.jpg?t=1" width="419px" />](https://spatie.be/github-ad-click/laravel-missing-page-redirector)
 
 We invest a lot of resources into creating [best in class open source packages](https://spatie.be/open-source). You can support us by [buying one of our paid products](https://spatie.be/open-source/support-us).
 

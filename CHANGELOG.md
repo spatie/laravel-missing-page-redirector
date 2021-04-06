@@ -2,6 +2,10 @@
 
 All notable changes to `laravel-missing-page-redirector` will be documented in this file
 
+## 2.7.2 - 2021-04-06
+
+- prep for Octane
+
 ## 2.7.1 - 2020-12-04
 
 - add support for PHP 8

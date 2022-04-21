@@ -34,6 +34,10 @@ class MissingPageRouter
         $redirects = $this->redirector->getRedirectsFor($request);
 
         collect($redirects)->each(function ($redirects, $missingUrl) {
+            if (str($missingUrl)->contains('*')) {
+                $missingUrl = str($missingUrl)->replace('*', '{wildcard}');
+            }
+
             $this->router->get($missingUrl, function () use ($redirects, $missingUrl) {
                 $redirectUrl = $this->determineRedirectUrl($redirects);
                 $statusCode = $this->determineRedirectStatusCode($redirects);
@@ -44,7 +48,7 @@ class MissingPageRouter
                     $redirectUrl,
                     $statusCode
                 );
-            });
+            })->where('wildcard', '.*');
         });
 
         try {

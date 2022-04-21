@@ -106,7 +106,15 @@ Optional parameters are also... an option:
     ],
 ```
 
-By default it only redirects if the request has a `404` response code but it's possible to be redirected on any response code.
+Finally, you can use an asterix (`*`) as a wildcard parameter that will match multiple URL segments (see [encoded URL slashes in the Laravel docs](https://laravel.com/docs/master/routing#parameters-encoded-forward-slashes) for more info). This is useful when you want to redirect a URL like `/old-blog/foo/bar/baz` to `/new-blog/foo/bar/baz`.
+
+```php
+    'redirects' => [
+       '/old-blog/*' => '/new-blog/{wildcard}', // {wilcard} will be the entire path
+    ],
+```
+
+By default the package only redirects if the request has a `404` response code but it's possible to be redirected on any response code.
 To achieve this you may change the ```redirect_status_codes``` option to an array of response codes or leave it empty if you wish to be redirected no matter what the response code was sent to the URL.
 You may override this using the following syntax to achieve this:  
 

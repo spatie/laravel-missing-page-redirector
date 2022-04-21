@@ -31,6 +31,19 @@ class RedirectsMissingPagesTest extends TestCase
     }
 
     /** @test */
+    public function it_will_redirect_wildcard_routes()
+    {
+        $this->app['config']->set('missing-page-redirector.redirects', [
+            '/path/*' => '/new-path/{wildcard}',
+        ]);
+
+        $this
+            ->get('path/to/a/page')
+            ->assertStatus(Response::HTTP_MOVED_PERMANENTLY)
+            ->assertRedirect('/new-path/to/a/page');
+    }
+
+    /** @test */
     public function it_will_not_redirect_an_url_that_it_not_configured()
     {
         $this->app['config']->set('missing-page-redirector.redirects', [

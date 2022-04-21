@@ -4,6 +4,7 @@ namespace Spatie\MissingPageRedirector;
 
 use Exception;
 use Illuminate\Routing\Router;
+use Illuminate\Support\Str;
 use Spatie\MissingPageRedirector\Events\RedirectNotFound;
 use Spatie\MissingPageRedirector\Events\RouteWasHit;
 use Spatie\MissingPageRedirector\Redirector\Redirector;
@@ -34,8 +35,8 @@ class MissingPageRouter
         $redirects = $this->redirector->getRedirectsFor($request);
 
         collect($redirects)->each(function ($redirects, $missingUrl) {
-            if (str($missingUrl)->contains('*')) {
-                $missingUrl = str($missingUrl)->replace('*', '{wildcard}');
+            if (Str::of($missingUrl)->contains('*')) {
+                $missingUrl = Str::replace('*', '{wildcard}', $missingUrl);
             }
 
             $this->router->get($missingUrl, function () use ($redirects, $missingUrl) {

@@ -2,6 +2,12 @@
 
 All notable changes to `laravel-missing-page-redirector` will be documented in this file
 
+## 2.9.1 - 2022-04-21
+
+- use `Str` class instead of `str` helper function
+
+**Full Changelog**: https://github.com/spatie/laravel-missing-page-redirector/compare/2.9.0...2.9.1
+
 ## 2.9.0 - 2022-04-21
 
 - Add support for wildcard route parameters that span multiple route segments (`/old/*` -> `/new/{wildcard}`)

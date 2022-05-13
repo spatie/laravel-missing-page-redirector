@@ -36,7 +36,7 @@ class MissingPageRouter
 
         collect($redirects)->each(function ($redirects, $missingUrl) {
             if (Str::contains($missingUrl, '*')) {
-                $missingUrl = Str::replace('*', '{wildcard}', $missingUrl);
+                $missingUrl = str_replace('*', '{wildcard}', $missingUrl);
             }
 
             $this->router->get($missingUrl, function () use ($redirects, $missingUrl) {

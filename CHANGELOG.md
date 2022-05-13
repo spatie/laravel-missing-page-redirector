@@ -2,6 +2,18 @@
 
 All notable changes to `laravel-missing-page-redirector` will be documented in this file
 
+## 2.9.2 - 2022-05-13
+
+## What's Changed
+
+- remove Str::of for Laravel 6 compatibility by @chrisGeonet in https://github.com/spatie/laravel-missing-page-redirector/pull/76
+
+## New Contributors
+
+- @chrisGeonet made their first contribution in https://github.com/spatie/laravel-missing-page-redirector/pull/76
+
+**Full Changelog**: https://github.com/spatie/laravel-missing-page-redirector/compare/2.9.1...2.9.2
+
 ## 2.9.1 - 2022-04-21
 
 - use `Str` class instead of `str` helper function

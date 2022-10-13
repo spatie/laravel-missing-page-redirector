@@ -2,6 +2,18 @@
 
 All notable changes to `laravel-missing-page-redirector` will be documented in this file
 
+## 2.9.3 - 2022-10-13
+
+### What's Changed
+
+- Use Laravel container on private Router - closes #77 by @rodrigopedra in https://github.com/spatie/laravel-missing-page-redirector/pull/78
+
+### New Contributors
+
+- @rodrigopedra made their first contribution in https://github.com/spatie/laravel-missing-page-redirector/pull/78
+
+**Full Changelog**: https://github.com/spatie/laravel-missing-page-redirector/compare/2.9.2...2.9.3
+
 ## 2.9.2 - 2022-05-13
 
 ## What's Changed

@@ -17,7 +17,7 @@ class MissingPageRedirectorServiceProvider extends ServiceProvider
         $this->app->bind(Redirector::class, config('missing-page-redirector.redirector'));
 
         $this->app->bind(MissingPageRouter::class, function ($app) {
-            $router = new Router($app['events']);
+            $router = new Router($app['events'], $app);
 
             $redirector = $app->make(Redirector::class);
 

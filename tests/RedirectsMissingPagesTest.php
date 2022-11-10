@@ -65,20 +65,18 @@ it('can optionally set the redirect status code')
     ->assertStatus(302)
     ->assertRedirect('/just-for-now');
 
-it('can use optional parameters', function () {
+it('can use optional parameters', function (string $getRoute, string $redirectRoute) {
     config()->set('missing-page-redirector.redirects', [
         '/old-segment/{parameter1?}/{parameter2?}' => '/new-segment/{parameter1}/{parameter2}',
     ]);
 
-    $this->get('/old-segment')
-        ->assertRedirect('/new-segment');
-
-    $this->get('/old-segment/old-segment2')
-        ->assertRedirect('/new-segment/old-segment2');
-
-    $this->get('/old-segment/old-segment2/old-segment3')
-        ->assertRedirect('/new-segment/old-segment2/old-segment3');
-});
+    $this->get($getRoute)
+        ->assertRedirect($redirectRoute);
+})->with([
+    ['/old-segment', '/new-segment'],
+    ['/old-segment/old-segment2', '/new-segment/old-segment2'],
+    ['/old-segment/old-segment2/old-segment3', '/new-segment/old-segment2/old-segment3']
+]);
 
 test('by default it will not redirect requests that are nit 404s')
     ->get('/response-code/500')

@@ -75,7 +75,7 @@ it('can use optional parameters', function (string $getRoute, string $redirectRo
 })->with([
     ['/old-segment', '/new-segment'],
     ['/old-segment/old-segment2', '/new-segment/old-segment2'],
-    ['/old-segment/old-segment2/old-segment3', '/new-segment/old-segment2/old-segment3']
+    ['/old-segment/old-segment2/old-segment3', '/new-segment/old-segment2/old-segment3'],
 ]);
 
 test('by default it will not redirect requests that are nit 404s')

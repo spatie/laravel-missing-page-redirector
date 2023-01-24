@@ -2,6 +2,21 @@
 
 All notable changes to `laravel-missing-page-redirector` will be documented in this file
 
+## 2.9.4 - 2023-01-24
+
+### What's Changed
+
+- Refactor tests to Pest by @alexmanase in https://github.com/spatie/laravel-missing-page-redirector/pull/79
+- Add PHP 8.2 Support by @patinthehat in https://github.com/spatie/laravel-missing-page-redirector/pull/80
+- Laravel 10.x Compatibility by @laravel-shift in https://github.com/spatie/laravel-missing-page-redirector/pull/81
+
+### New Contributors
+
+- @alexmanase made their first contribution in https://github.com/spatie/laravel-missing-page-redirector/pull/79
+- @patinthehat made their first contribution in https://github.com/spatie/laravel-missing-page-redirector/pull/80
+
+**Full Changelog**: https://github.com/spatie/laravel-missing-page-redirector/compare/2.9.3...2.9.4
+
 ## 2.9.3 - 2022-10-13
 
 ### What's Changed

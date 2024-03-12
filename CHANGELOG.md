@@ -2,6 +2,14 @@
 
 All notable changes to `laravel-missing-page-redirector` will be documented in this file
 
+## 2.10.0 - 2024-03-12
+
+### What's Changed
+
+* Laravel 11.x Compatibility by @laravel-shift in https://github.com/spatie/laravel-missing-page-redirector/pull/84
+
+**Full Changelog**: https://github.com/spatie/laravel-missing-page-redirector/compare/2.9.4...2.10.0
+
 ## 2.9.4 - 2023-01-24
 
 ### What's Changed

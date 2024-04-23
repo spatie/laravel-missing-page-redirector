@@ -27,16 +27,18 @@ composer require spatie/laravel-missing-page-redirector
 
 The package will automatically register itself.
 
-Next you must register the `Spatie\MissingPageRedirector\RedirectsMissingPages`-middleware:
+Next, prepend/append the `Spatie\MissingPageRedirector\RedirectsMissingPages` middleware to your global middleware stack:
 
 ```php
-//app/Http/Kernel.php
-
-protected $middleware = [
-       ...
-       \Spatie\MissingPageRedirector\RedirectsMissingPages::class,
-    ],
+// bootstrap/app.php
+->withMiddleware(function (Middleware $middleware) {
+    $middleware->append([
+        \Spatie\MissingPageRedirector\RedirectsMissingPages::class,
+    ]);
+})
 ```
+
+
 
 Finally you must publish the config file:
 

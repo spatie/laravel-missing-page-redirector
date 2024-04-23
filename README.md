@@ -152,6 +152,26 @@ interface Redirector
 
 The `getRedirectsFor` method should return an array in which the keys are the old URLs and the values the new URLs.
 
+## If you want to use `Route::fallback`
+
+If you do not wish to overwrite the default redirector, or if you already have existing `Route::fallback` logic based on [laravel docs](https://laravel.com/docs/11.x/routing#fallback-routes), you can use this package as follow.
+In the bottom of your `web.php` file,
+
+```php
+use Spatie\MissingPageRedirector\MissingPageRouter;
+//... Your other route
+
+Route::fallback(function (Request $request) {
+    $redirectResponse = app(MissingPageRouter::class)->getRedirectFor($request);
+
+    if ($redirectResponse !== null) {
+        return $redirectResponse;
+    }
+    //... Your other logic
+});
+```
+You can adjust the priority of redirect base on your needs.
+
 ## Changelog
 
 Please see [CHANGELOG](CHANGELOG.md) for more information what has changed recently.

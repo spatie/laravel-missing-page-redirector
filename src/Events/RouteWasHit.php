@@ -13,7 +13,7 @@ class RouteWasHit
     /** @var int|null */
     public $statusCode;
 
-    public function __construct(string $route, string $missingUrl, int $statusCode = null)
+    public function __construct(string $route, string $missingUrl, ?int $statusCode = null)
     {
         $this->route = $route;
 

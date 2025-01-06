@@ -2,6 +2,22 @@
 
 All notable changes to `laravel-missing-page-redirector` will be documented in this file
 
+## 2.11.0 - 2025-01-06
+
+### What's Changed
+
+* Update README.md by @hofmannsven in https://github.com/spatie/laravel-missing-page-redirector/pull/86
+* Update README.md by @chengkangzai in https://github.com/spatie/laravel-missing-page-redirector/pull/85
+* fix php8.4 nullable is deprecated by @it-can in https://github.com/spatie/laravel-missing-page-redirector/pull/87
+
+### New Contributors
+
+* @hofmannsven made their first contribution in https://github.com/spatie/laravel-missing-page-redirector/pull/86
+* @chengkangzai made their first contribution in https://github.com/spatie/laravel-missing-page-redirector/pull/85
+* @it-can made their first contribution in https://github.com/spatie/laravel-missing-page-redirector/pull/87
+
+**Full Changelog**: https://github.com/spatie/laravel-missing-page-redirector/compare/2.10.0...2.11.0
+
 ## 2.10.0 - 2024-03-12
 
 ### What's Changed

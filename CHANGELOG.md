@@ -2,6 +2,10 @@
 
 All notable changes to `laravel-missing-page-redirector` will be documented in this file
 
+## 2.12.0 - 2026-02-21
+
+Add Laravel 13 support
+
 ## 2.11.1 - 2025-02-21
 
 ### What's Changed
